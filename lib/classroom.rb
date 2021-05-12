@@ -19,5 +19,12 @@ class Classroom
     capitalized_names
   end
 
+  def over_capacity?
+    if students.length > capacity
+      true
+    else
+      false
+    end
+  end
 
 end

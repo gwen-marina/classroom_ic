@@ -49,11 +49,21 @@ describe Classroom do
   # Iteration 3
 
   context 'Capacity evaluation' do
-    it 'evaluates at or under capacity' do
+    it 'evaluates under capacity' do
       classroom = Classroom.new('History', 4)
       classroom.add_student('Mike')
       classroom.add_student('Megan')
       classroom.add_student('Bob')
+
+      expect(classroom.over_capacity?).to eq false
+    end
+
+    it 'evaluates at capacity' do
+      classroom = Classroom.new('History', 4)
+      classroom.add_student('Mike')
+      classroom.add_student('Megan')
+      classroom.add_student('Bob')
+      classroom.add_student('Michael')
 
       expect(classroom.over_capacity?).to eq false
     end
@@ -68,7 +78,24 @@ describe Classroom do
 
       expect(classroom.over_capacity?).to eq true
     end
-
   end
 
+  # Iteration 4
+
+  context 'Remove student' do
+    it 'Removes a student if over capacity' do
+      classroom = Classroom.new('History', 4)
+      classroom.add_student('Mike')
+      classroom.add_student('Megan')
+      classroom.add_student('Bob')
+      classroom.add_student('James')
+      classroom.add_student('Cat')
+      classroom.add_student('Alice')
+
+
+      expect(classroom.kick_out).to eq 'Alice'
+      expect(classroom.kick_out).to eq 'Cat'
+      expect(classroom.students).to eq ['Mike', 'Megan', 'Bob', 'James']
+    end
+  end
 end

@@ -29,7 +29,7 @@ class Classroom
 
   def kick_out
     if over_capacity? == true
-      students.pop
+      students.shift
     end
   end
 

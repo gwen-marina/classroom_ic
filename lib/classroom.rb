@@ -27,4 +27,10 @@ class Classroom
     end
   end
 
+  def kick_out
+    if over_capacity? == true
+      students.pop
+    end
+  end
+
 end

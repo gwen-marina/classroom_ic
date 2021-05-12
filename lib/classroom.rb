@@ -6,5 +6,9 @@ class Classroom
     @capacity = capacity
     @students = []
   end
+  
+  def add_student(name)
+    students << name
+  end
 
 end

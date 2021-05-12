@@ -93,9 +93,9 @@ describe Classroom do
       classroom.add_student('Alice')
 
 
-      expect(classroom.kick_out).to eq 'Alice'
-      expect(classroom.kick_out).to eq 'Cat'
-      expect(classroom.students).to eq ['Mike', 'Megan', 'Bob', 'James']
+      expect(classroom.kick_out).to eq 'Mike'
+      expect(classroom.kick_out).to eq 'Megan'
+      expect(classroom.students).to eq ['Bob', 'James', 'Cat', 'Alice']
     end
   end
 end

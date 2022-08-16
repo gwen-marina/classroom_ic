@@ -1,5 +1,7 @@
-class Classroom
-  attr_reader :subject, :capacity, :students, :capitalized_names
+class Classroom 
+  attr_reader :subject,
+              :capacity,
+              :students
 
   def initialize(subject, capacity)
     @subject = subject
@@ -8,29 +10,26 @@ class Classroom
   end
 
   def add_student(name)
-    students << name
+    @students << name
   end
 
   def yell_at_students
-    capitalized_names = []
-    students.each do |name|
-      capitalized_names << name.upcase
+    students.map do |student|
+      student.upcase
     end
-    capitalized_names
   end
 
   def over_capacity?
-    if students.length > capacity
-      true
+    if students.count > capacity 
+      true 
     else
       false
     end
   end
 
   def kick_out
-    if over_capacity? == true
+    if over_capacity? 
       students.shift
     end
   end
-
 end

@@ -46,44 +46,28 @@ describe Classroom do
     end
   end
 
-  # Iteration 3
+  # iteration 3
 
-  context 'Capacity evaluation' do
-    it 'evaluates under capacity' do
+  context 'Capacity' do
+    it 'can return a boolean if a classroom is over capacity' do 
       classroom = Classroom.new('History', 4)
       classroom.add_student('Mike')
       classroom.add_student('Megan')
       classroom.add_student('Bob')
 
-      expect(classroom.over_capacity?).to eq false
-    end
+      expect(classroom.over_capacity?).to eq(false)
 
-    it 'evaluates at capacity' do
-      classroom = Classroom.new('History', 4)
-      classroom.add_student('Mike')
-      classroom.add_student('Megan')
-      classroom.add_student('Bob')
-      classroom.add_student('Michael')
-
-      expect(classroom.over_capacity?).to eq false
-    end
-
-    it 'evaluates when capacity is over' do
-      classroom = Classroom.new('History', 4)
-      classroom.add_student('Mike')
-      classroom.add_student('Megan')
-      classroom.add_student('Bob')
       classroom.add_student('Eve')
       classroom.add_student('Alice')
 
-      expect(classroom.over_capacity?).to eq true
+      expect(classroom.over_capacity?).to eq(true)
     end
   end
 
-  # Iteration 4
+  # iteration 4
 
-  context 'Remove student' do
-    it 'Removes a student if over capacity' do
+  context 'kicks students out' do 
+    it 'can kick out students if over capacity' do 
       classroom = Classroom.new('History', 4)
       classroom.add_student('Mike')
       classroom.add_student('Megan')
@@ -92,10 +76,13 @@ describe Classroom do
       classroom.add_student('Cat')
       classroom.add_student('Alice')
 
+      classroom.kick_out
+      expect(classroom.over_capacity?).to eq(true)
+      classroom.kick_out
+      expect(classroom.over_capacity?).to eq(false)
 
-      expect(classroom.kick_out).to eq 'Mike'
-      expect(classroom.kick_out).to eq 'Megan'
-      expect(classroom.students).to eq ['Bob', 'James', 'Cat', 'Alice']
+      expected = ["Bob", "James", "Cat", "Alice"]
+      expect(classroom.students).to eq(expected)
     end
   end
 end
